@@ -20,7 +20,7 @@ def char_to_num(arr)
 
 end 
 
-#Converts integer ordinal to string only if value is an integer/numeric
+#Converts integer ordinal to char counterpart, only if value is an integer/numeric
 def num_to_char(arr)
   new_arr = arr.map do |x|
     if x.class == Integer
@@ -32,7 +32,7 @@ def num_to_char(arr)
 
 end
 
-#shifts every value based on given shift factor, ignores value if its not a number.
+#shifts every value based on given shift factor, ignores shift if value is not a number.
 def shift(arr, to_shift)
   arr.map do |val|
     if val.class == Integer
