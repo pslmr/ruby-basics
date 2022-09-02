@@ -1,31 +1,27 @@
 require "pry-byebug"
 
 def stock_picker(arr)
-  # iterations: [3,15] 1
-  profitable = []
+  buy = arr[0]
+  buy_idx = 0
+  profit = 0
 
-  arr.each_with_index do |val, idx|
-    if profitable.empty? 
-      profitable.push(val)
-    elsif val < profitable[0] && profitable.length == 1
-      profitable.pop
-      profitable.push(val)
-    elsif val > profitable[0]
-      if profitable.length == 1
-        profitable.push(val)
-      elsif val > profitable[1]
-        profitable.pop
-        profitable.push(val)
-      end
+  arr.each_with_index.reduce(Array.new(2,0)) do |acc, (val, i)|
+    if val < buy
+      buy = val
+      buy_idx = i 
+      next
     end
 
-  end
+    if val - buy > profit
+      profit = val - buy
+      acc = [buy_idx, i]
+    end
 
-  profitable
+    acc
+  end
 
 end
 
-
 stock_prices_set_a = [17,3,6,9,15,8,6,1,10]
 stock_prices_set_b = [10,11,2,4,5,1,20,5,4]
-p stock_picker(stock_prices_set_b)
+p stock_picker(stock_prices_set_a)
