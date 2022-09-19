@@ -28,7 +28,7 @@ class Game
           p1_choice = gets.chomp
         end
         @player1_moves.push(p1_choice.to_i)
-        p1_pos(p1_choice)
+        assign_pos(p1_choice, player = 'p1')
         if check_winner
           puts "\n"
           display_board
@@ -46,7 +46,7 @@ class Game
           p2_choice = gets.chomp
         end
         @player2_moves.push(p2_choice.to_i)
-        p2_pos(p2_choice)
+        assign_pos(p2_choice, player = 'p2')
         if check_winner
           puts "\n"
           display_board
@@ -59,7 +59,7 @@ class Game
     end
   end
 
-  
+
 
   def clear_board
     @player1_moves = []
@@ -97,53 +97,30 @@ class Game
     false
   end
 
-  def p1_pos(choice)
+  def assign_pos(choice, player)
+    player == 'p1' ? marker = 'x' : marker = 'o'
+
     case choice.to_i
     when 1
-      @board[0][0] = 'x'
+      @board[0][0] = marker
     when 2
-      @board[0][2] = 'x'
+      @board[0][2] = marker
     when 3
-      @board[0][4] = 'x'
+      @board[0][4] = marker
     when 4
-      @board[2][0] = 'x'
+      @board[2][0] = marker
     when 5
-      @board[2][2] = 'x'
+      @board[2][2] = marker
     when 6
-      @board[2][4] = 'x'
+      @board[2][4] = marker
     when 7
-      @board[4][0] = 'x'
+      @board[4][0] = marker
     when 8
-      @board[4][2] = 'x'
+      @board[4][2] = marker
     when 9
-      @board[4][4] = 'x'
+      @board[4][4] = marker
     else
       puts "Invalid input"
-    end
-  end
-
-  def p2_pos(choice)
-    case choice.to_i
-    when 1
-      @board[0][0] = 'o'
-    when 2
-      @board[0][2] = 'o'
-    when 3
-      @board[0][4] = 'o'
-    when 4
-      @board[2][0] = 'o'
-    when 5
-      @board[2][2] = 'o'
-    when 6
-      @board[2][4] = 'o'
-    when 7
-      @board[4][0] = 'o'
-    when 8
-      @board[4][2] = 'o'
-    when 9
-      @board[4][4] = 'o'
-    else
-      puts 'Invalid input'
     end
   end
 
