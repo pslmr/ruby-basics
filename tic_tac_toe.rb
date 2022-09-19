@@ -30,7 +30,9 @@ class Game
         @player1_moves.push(p1_choice.to_i)
         p1_pos(p1_choice)
         if check_winner
+          puts "\n"
           display_board
+          puts "\n"
           return puts 'P1 wins'
         end
       else
@@ -46,14 +48,30 @@ class Game
         @player2_moves.push(p2_choice.to_i)
         p2_pos(p2_choice)
         if check_winner
+          puts "\n"
           display_board
+          puts "\n"
           return puts 'P2 wins'
         end
       end
       puts "\n"
       i += 1
     end
+  end
 
+  
+
+  def clear_board
+    @player1_moves = []
+    @player2_moves = []
+    @board = [
+      [' ', '|', ' ', '|', ' '],
+      ['-', '+', '-', '+', '-'],
+      [' ', '|', ' ', '|', ' '],
+      ['-', '+', '-', '+', '-'],
+      [' ', '|', ' ', '|', ' ']
+    ]
+    puts 'Game board cleared!'
   end
 
   def check_winner
@@ -67,8 +85,6 @@ class Game
       [1, 5, 9],
       [3, 5, 7]
     ]
-
-    # binding.pry
 
     winning_patterns.each do |row|
       if row.eql?(@player1_moves.sort)
