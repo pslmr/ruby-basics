@@ -16,7 +16,19 @@ class Game
 
   def play_match
     play_round
-    
+    loop do
+      print 'Up for another game?(Y/N): '
+      choice = gets.chomp.downcase
+      if choice == 'y'
+        clear_board
+        play_round
+      elsif choice == 'n'
+        puts 'Thank you for playing!'
+        break
+      else
+        puts 'Invalid choice.'
+      end
+    end
   end
 
   def play_round
@@ -26,13 +38,13 @@ class Game
         display_board
         puts "\n"
         print 'P1 enter position (1-9): '
-        p1_choice = gets.chomp
+        p1_choice = gets.chomp.to_i
         while @player2_moves.include?(p1_choice) || @player1_moves.include?(p1_choice)
           puts 'Position already occupied, choose another position!'
           print 'P1 enter position (1-9): '
-          p1_choice = gets.chomp
+          p1_choice = gets.chomp.to_i
         end
-        @player1_moves.push(p1_choice.to_i)
+        @player1_moves.push(p1_choice)
         assign_pos(p1_choice, player = 'p1')
         if check_winner
           puts "\n"
@@ -44,13 +56,13 @@ class Game
         display_board
         puts "\n"
         print 'P2 enter position (1-9): '
-        p2_choice = gets.chomp
+        p2_choice = gets.chomp.to_i
         while @player2_moves.include?(p2_choice) || @player1_moves.include?(p2_choice)
           puts 'Position already occupied, choose another position!'
           print 'P2 enter position (1-9): '
-          p2_choice = gets.chomp
+          p2_choice = gets.chomp.to_i
         end
-        @player2_moves.push(p2_choice.to_i)
+        @player2_moves.push(p2_choice)
         assign_pos(p2_choice, player = 'p2')
         if check_winner
           puts "\n"
@@ -75,6 +87,7 @@ class Game
       [' ', '|', ' ', '|', ' ']
     ]
     puts 'Game board cleared!'
+    puts "\n"
   end
 
   def check_winner
