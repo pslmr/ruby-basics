@@ -13,8 +13,6 @@ class Game
   end
 
   def play
-    display_board
-
     i = 1
     while true
       if i.odd?
@@ -26,6 +24,7 @@ class Game
         display_board
         puts 'P2 enter position (1-9): '
         p2_choice = gets.chomp
+        p2_pos(p2_choice)
       end
 
       i += 1
@@ -34,27 +33,52 @@ class Game
   end
 
   def p1_pos(choice)
-    case choice
+    case choice.to_i
     when 1
-      @board[0][0] = x
+      @board[0][0] = 'x'
     when 2
-      @board[0][2] = x
+      @board[0][2] = 'x'
     when 3
-      @board[0][4] = x
+      @board[0][4] = 'x'
     when 4
-      @board[2][0] = x
+      @board[2][0] = 'x'
     when 5
-      @board[2][2] = x
+      @board[2][2] = 'x'
     when 6
-      @board[2][4] = x
+      @board[2][4] = 'x'
     when 7
-      @board[4][0] = x
+      @board[4][0] = 'x'
     when 8
-      @board[4][2] = x
+      @board[4][2] = 'x'
     when 9
-      @board[4][4] = x
+      @board[4][4] = 'x'
     else
       puts "Invalid input"
+    end
+  end
+
+  def p2_pos(choice)
+    case choice.to_i
+    when 1
+      @board[0][0] = 'o'
+    when 2
+      @board[0][2] = 'o'
+    when 3
+      @board[0][4] = 'o'
+    when 4
+      @board[2][0] = 'o'
+    when 5
+      @board[2][2] = 'o'
+    when 6
+      @board[2][4] = 'o'
+    when 7
+      @board[4][0] = 'o'
+    when 8
+      @board[4][2] = 'o'
+    when 9
+      @board[4][4] = 'o'
+    else
+      puts 'Invalid input'
     end
   end
 
