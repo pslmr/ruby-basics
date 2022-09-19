@@ -17,11 +17,16 @@ class Game
 
     i = 1
     while true
-      if 
-      display_board
-      puts 'Enter position (1-9): '
-      player_choice = gets.chomp
-
+      if i.odd?
+        display_board
+        puts 'P1 enter position (1-9): '
+        p1_choice = gets.chomp
+        p1_pos(p1_choice)
+      else
+        display_board
+        puts 'P2 enter position (1-9): '
+        p2_choice = gets.chomp
+      end
 
       i += 1
     end
