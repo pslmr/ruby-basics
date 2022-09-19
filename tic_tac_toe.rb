@@ -45,8 +45,9 @@ class Game
           p1_choice = gets.chomp.to_i
         end
         @player1_moves.push(p1_choice)
-        assign_pos(p1_choice, player = 'p1')
-        if check_winner
+        player = 'p1'
+        assign_pos(p1_choice, player)
+        if check_winner(player)
           puts "\n"
           display_board
           puts "\n"
@@ -63,8 +64,9 @@ class Game
           p2_choice = gets.chomp.to_i
         end
         @player2_moves.push(p2_choice)
-        assign_pos(p2_choice, player = 'p2')
-        if check_winner
+        player = 'p2'
+        assign_pos(p2_choice, player)
+        if check_winner(player)
           puts "\n"
           display_board
           puts "\n"
@@ -90,7 +92,7 @@ class Game
     puts "\n"
   end
 
-  def check_winner
+  def check_winner(player)
     winning_patterns = [
       [1, 2, 3],
       [4, 5, 6],
@@ -102,15 +104,13 @@ class Game
       [3, 5, 7]
     ]
 
-    winning_patterns.each do |row|
-      if row.eql?(@player1_moves.sort)
-        return true
-      elsif row.eql?(@player2_moves.sort)
-        return true
+    player = player == 'p1' ? @player1_moves : @player2_moves
+
+    winning_patterns.any? do |row|
+      row.all? do |val|
+        player.include?(val)
       end
     end
-
-    false
   end
 
   def assign_pos(choice, player)
