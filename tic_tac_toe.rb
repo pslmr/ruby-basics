@@ -1,20 +1,13 @@
-class Player
-  attr_accessor :symbol
-  def initialize(symbol)
-    @symbol = symbol
-  end
-end
-
 class Game
-
   def initialize(player)
-      @player = player
-      @board = [
-      [" ", "|", " ", "|", " "],
-      ["-", "+", "-", "+", "-"],
-      [" ", "|", " ", "|", " "],
-      ["-", "+", "-", "+", "-"],
-      [" ", "|", " ", "|", " "]]
+    @player = player
+    @board = [
+      [' ', '|', ' ', '|', ' '],
+      ['-', '+', '-', '+', '-'],
+      [' ', '|', ' ', '|', ' '],
+      ['-', '+', '-', '+', '-'],
+      [' ', '|', ' ', '|', ' ']
+    ]
   end
 
   def display_board
@@ -27,7 +20,5 @@ class Game
   end
 end
 
-p1 = Player.new('x')
-p2 = Player.new('o')
 new_game = Game.new("player")
 new_game.display_board
