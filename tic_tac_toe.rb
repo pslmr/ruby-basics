@@ -11,10 +11,15 @@ class Game
       ['-', '+', '-', '+', '-'],
       [' ', '|', ' ', '|', ' ']
     ]
-    play
+    play_match
   end
 
-  def play
+  def play_match
+    play_round
+    
+  end
+
+  def play_round
     i = 1
     while true
       if i.odd?
@@ -58,8 +63,6 @@ class Game
       i += 1
     end
   end
-
-
 
   def clear_board
     @player1_moves = []
@@ -120,7 +123,7 @@ class Game
     when 9
       @board[4][4] = marker
     else
-      puts "Invalid input"
+      puts 'Invalid input'
     end
   end
 
