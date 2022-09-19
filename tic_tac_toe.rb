@@ -31,6 +31,8 @@ class Game
     end
   end
 
+  private
+
   def play_round
     i = 1
     while true
@@ -75,7 +77,22 @@ class Game
       end
       puts "\n"
       i += 1
+      if check_board
+        display_board
+        puts "\n"
+        puts 'No more moves left!'
+        break
+      else
+        next
+      end
     end
+  end
+
+  def check_board
+    moves_made = @player1_moves + @player2_moves
+    moves = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+    moves_made.sort.eql?(moves)
   end
 
   def clear_board
@@ -114,7 +131,7 @@ class Game
   end
 
   def assign_pos(choice, player)
-    player == 'p1' ? marker = 'x' : marker = 'o'
+    marker = player == 'p1' ? 'x' : 'o'
 
     case choice.to_i
     when 1
