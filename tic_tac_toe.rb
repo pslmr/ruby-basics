@@ -33,6 +33,8 @@ class Game
 
   private
 
+  # looping through player turns, uses #odd? to check which symbol to use for player each turn.
+  # calls #check_winner and #check_board every end of turn.
   def play_round
     i = 1
     while true
@@ -88,6 +90,8 @@ class Game
     end
   end
 
+  # combines all moves made, sort and compared to moves[].
+  # In which moves[] represent maximum moves that can be made per game.
   def check_board
     moves_made = @player1_moves + @player2_moves
     moves = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -109,6 +113,9 @@ class Game
     puts "\n"
   end
 
+  # winning_patterns[], a nested array containing all winning patterns possible in the game.
+  # checks passed argument to know which player move array needs to be checked.
+  # Iterate through every subarray and validate if current subarray element is found within player moves array.
   def check_winner(player)
     winning_patterns = [
       [1, 2, 3],
@@ -130,6 +137,7 @@ class Game
     end
   end
 
+  # checks 2nd passed argument to know which player is playing the turn.
   def assign_pos(choice, player)
     marker = player == 'p1' ? 'x' : 'o'
 
@@ -157,6 +165,7 @@ class Game
     end
   end
 
+  # iterate and print elements of the subarray while escaping to a new line for every row.
   def display_board
     @board.each do |row|
       row.each do |col|
