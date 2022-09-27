@@ -14,16 +14,23 @@ class Game
   def start
     @computer.gen_code
     @player.get_guess
-    puts find_match
+    # puts find_match
+    # puts find_partial
+    puts compare
     p @computer.code_combo
   end
 
-  def find_match
-    match = ['Match: ']
+  def compare
+    match = []
+    partial = []
     @computer.code_combo.each_with_index do |x, i|
-      match.push('M') if x == @player.code_guess[i]
+      if x == @player.code_guess[i]
+        match.push('M')
+      else
+        partial.push('P') if @player.code_guess.include?(x)
+      end
     end
-    match.join(' ')
+    feedback = ['Feedback:'] + match + partial
+    feedback.join(' ')
   end
-
 end
