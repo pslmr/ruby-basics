@@ -6,8 +6,15 @@ class Player
   end
 
   def get_guess
-    print 'Enter 4 numbers as your guess combination, seperated by spaces.(1-6): '
-    input = gets.chomp
-    @code_guess = input.split.map {|x| x.to_i }
+    guess = []
+    i = 1
+    while i <= 4
+      print "Enter guess ##{i}. [1-6]: "
+      val = gets.chomp.to_i
+      next if val > 6 || val < 1
+      guess.push(val)
+      i += 1
+    end
+    guess
   end
 end
