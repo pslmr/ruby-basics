@@ -5,16 +5,17 @@ class Player
     @code_guess
   end
 
-  def get_guess
-    guess = []
+  def input_guess
+    temp_guess = []
     i = 1
     while i <= 4
       print "Enter guess ##{i}. [1-6]: "
       val = gets.chomp.to_i
       next if val > 6 || val < 1
-      guess.push(val)
+
+      temp_guess.push(val)
       i += 1
     end
-    guess
+    @code_guess = temp_guess
   end
 end
