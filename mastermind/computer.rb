@@ -1,5 +1,5 @@
 class Computer
-  NUM_POOL = [1,2,3,4,5,6]
+  NUM_POOL = [1, 2, 3, 4, 5, 6]
 
   attr_reader :code_combo
 
@@ -8,6 +8,6 @@ class Computer
   end
 
   def gen_code
-    @code_combo = 4.times.map {Random.rand(6)+1}
+    @code_combo = 4.times.map { Random.rand(6)+1 }
   end
 end
