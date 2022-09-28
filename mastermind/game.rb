@@ -4,7 +4,6 @@ require_relative 'computer'
 require_relative 'player'
 
 class Game
-  # attr_accessor :computer
 
   def initialize
     @computer = Computer.new
@@ -13,24 +12,35 @@ class Game
 
   def start
     @computer.gen_code
-    @player.get_guess
-    # puts find_match
-    # puts find_partial
-    puts compare
+    @player.input_guess
+    compare
+    p @player.code_guess
     p @computer.code_combo
   end
 
   def compare
-    match = []
-    partial = []
-    @computer.code_combo.each_with_index do |x, i|
-      if x == @player.code_guess[i]
-        match.push('M')
-      else
-        partial.push('P') if @player.code_guess.include?(x)
+    match = 0
+    partial = 0
+    temp_code = @computer.code_combo.dup
+    temp_guess = @player.code_guess.dup
+    temp_code.each_with_index do |x, i|
+      if x == temp_guess[i]
+        temp_guess[i] = 'm'
+        temp_code[i] = 'g'
+        match += 1
+      end
+      next
+    end
+
+    temp_code.each_with_index do |x, i|
+      if temp_guess.include?(x)
+        mark_partial_idx = temp_guess.index(x)
+        temp_guess[mark_partial_idx] = 'm'
+        temp_code[i] = 'g'
+        partial += 1
       end
     end
-    feedback = ['Feedback:'] + match + partial
-    feedback.join(' ')
+
+    puts "\nMatch: #{match} Partial: #{partial}"
   end
 end
