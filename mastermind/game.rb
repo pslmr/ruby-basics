@@ -10,7 +10,7 @@ class Game
   end
 
   def start
-    puts "\n----- New Game -----"
+    puts "\n=============== NEW GAME ==============="
     @computer.gen_code
     round == true ? win : lose
   end
@@ -36,10 +36,10 @@ class Game
         start
       when 'N'
         repeat = false
-        puts 'Thanks for playing! :)'
+        puts "\nThanks for playing! :)"
         return
       else
-        puts 'Invalid choice!'
+        puts "\nInvalid choice! Try again."
       end
     end
   end
@@ -47,7 +47,7 @@ class Game
   def round
     attempts = 1
     while attempts <= 12
-      puts  "\n----- ROUND #{attempts} -----"
+      puts "\n---------------- ROUND #{attempts} ---------------"
       @player.input_guess
       return true if compare == 4
       attempts += 1
