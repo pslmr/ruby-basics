@@ -4,18 +4,54 @@ require_relative 'computer'
 require_relative 'player'
 
 class Game
-
   def initialize
     @computer = Computer.new
     @player = Player.new
   end
 
   def start
+    puts "\n----- New Game -----"
     @computer.gen_code
-    @player.input_guess
-    compare
-    p @player.code_guess
-    p @computer.code_combo
+    round == true ? win : lose
+  end
+
+  def win
+    puts "\nYou won! The secret code was #{@computer.code_combo}."
+    again
+  end
+
+  def lose
+    puts "\nYou lost! The secret code was #{@computer.code_combo}."
+    again
+  end
+
+  def again
+    repeat = true
+    while repeat
+      print 'Do you want to pay again?[Y/N]: '
+      ans = gets.chomp.upcase
+      case ans
+      when 'Y'
+        repeat = false
+        start
+      when 'N'
+        repeat = false
+        puts 'Thanks for playing! :)'
+        return
+      else
+        puts 'Invalid choice!'
+      end
+    end
+  end
+
+  def round
+    attempts = 1
+    while attempts <= 12
+      puts  "\n----- ROUND #{attempts} -----"
+      @player.input_guess
+      return true if compare == 4
+      attempts += 1
+    end
   end
 
   def compare
@@ -41,6 +77,9 @@ class Game
       end
     end
 
-    puts "\nMatch: #{match} Partial: #{partial}"
+    puts "\nYour guess: #{@player.code_guess}"
+    puts "Match: #{match} Partial: #{partial}"
+    return match if match == 4
   end
+
 end
